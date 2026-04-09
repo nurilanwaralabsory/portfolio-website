@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 
 import { routing } from "@/i18n/routing";
 import { getMessages, setRequestLocale } from "next-intl/server";
+import ThemeProviderContext from "@/common/stores/theme";
+import Layouts from "@/common/components/layouts";
 
 export const metadata: Metadata = {
      title: "Create Next App",
@@ -31,7 +33,11 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
 
      return (
           <html lang={locale} suppressHydrationWarning={true}>
-               <body className={inter.className}>{children}</body>
+               <body className={inter.className}>
+                    <ThemeProviderContext>
+                         <Layouts>{children}</Layouts>
+                    </ThemeProviderContext>
+               </body>
           </html>
      );
 };

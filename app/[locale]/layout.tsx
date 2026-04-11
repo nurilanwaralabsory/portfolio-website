@@ -28,15 +28,17 @@ const RootLayout = async ({ children, params }: RootLayoutProps) => {
 
      setRequestLocale(locale);
 
-     // const messages = await getMessages();
+     const messages = await getMessages();
      // const session = await getServerSession();
 
      return (
           <html lang={locale} suppressHydrationWarning={true}>
                <body className={inter.className}>
-                    <ThemeProviderContext>
-                         <Layouts>{children}</Layouts>
-                    </ThemeProviderContext>
+                    <NextIntlClientProvider messages={messages} locale={locale}>
+                         <ThemeProviderContext>
+                              <Layouts>{children}</Layouts>
+                         </ThemeProviderContext>
+                    </NextIntlClientProvider>
                </body>
           </html>
      );

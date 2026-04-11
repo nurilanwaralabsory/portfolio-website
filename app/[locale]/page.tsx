@@ -1,8 +1,9 @@
 interface HomePageProps {
-     params: { locale: string };
+     params: Promise<{ locale: string }>;
 }
 
-const HomePage = async ({ params: { locale } }: HomePageProps) => {
+const HomePage = async ({ params }: HomePageProps) => {
+     const { locale } = await params;
      return (
           <div>
                <h1>Welcome to the Home Page</h1>
